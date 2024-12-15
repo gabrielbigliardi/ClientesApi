@@ -1,4 +1,4 @@
-﻿using Clientes.Infraestrutura.Dto;
+﻿using Clientes.Contrato.Dto;
 using System;
 using System.Collections.Generic;
 using System.Linq;

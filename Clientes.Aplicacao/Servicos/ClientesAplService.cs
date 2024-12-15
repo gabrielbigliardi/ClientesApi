@@ -1,4 +1,4 @@
-﻿using Clientes.Aplicacao.Dtos;
+﻿using Clientes.Contrato.Dto;
 using Clientes.Aplicacao.Interfaces;
 using Clientes.Dominio.Interfaces;
 using Clientes.Dominio.Servico;

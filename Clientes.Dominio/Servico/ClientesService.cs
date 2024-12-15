@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 using Clientes.Dominio.Entidades;
 using Clientes.Dominio.Interfaces;
-using Clientes.Infraestrutura.Dto;
+using Clientes.Contrato.Dto;
 using Clientes.Infraestrutura.Interfaces;
 using System;
 using System.Collections.Generic;
