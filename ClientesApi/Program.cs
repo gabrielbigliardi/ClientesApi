@@ -1,7 +1,7 @@
 using Clientes.Aplicacao.Interfaces;
 using Clientes.Aplicacao.Servicos;
 using Clientes.Dominio.Interfaces;
-using Clientes.Dominio.Map;
+using Clientes.Contrato.Map;
 using Clientes.Dominio.Servico;
 using Clientes.Infraestrutura.Interfaces;
 using Clientes.Infraestrutura.Repositorio;

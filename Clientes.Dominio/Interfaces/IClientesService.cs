@@ -1,4 +1,4 @@
-﻿using Clientes.Dominio.Entidades;
+﻿using Clientes.Contrato.Entidades;
 using System;
 using System.Collections.Generic;
 using System.Linq;

@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using Clientes.Dominio.Entidades;
+using Clientes.Contrato.Entidades;
 using Clientes.Dominio.Interfaces;
 using Clientes.Contrato.Dto;
 using Clientes.Infraestrutura.Interfaces;

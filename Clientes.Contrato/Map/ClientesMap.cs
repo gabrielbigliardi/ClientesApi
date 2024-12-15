@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using Clientes.Dominio.Entidades;
+using Clientes.Contrato.Entidades;
 using Clientes.Contrato.Dto;
 using System;
 using System.Collections.Generic;
@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Clientes.Dominio.Map
+namespace Clientes.Contrato.Map
 {
     public class MappingProfile : Profile
     {
