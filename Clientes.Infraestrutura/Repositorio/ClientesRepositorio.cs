@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
+using Clientes.Contrato.Entidades;
 
 namespace Clientes.Infraestrutura.Repositorio
 {
@@ -46,41 +47,150 @@ namespace Clientes.Infraestrutura.Repositorio
             return clientes;
         }
 
-        //public class DadosClientes
-        //{
-        //    public List<ClienteDto>? Clientes { get; set; }
-        //}
+        public ClienteDto ObterPorId(int id)
+        {
+            string caminho = @"C:\Users\gabri\OneDrive\Documentos\Católica\PI-IV-B\clientes.json";
 
-        //private readonly string _jsonFilePath;
+            // Verifica se o arquivo existe
+            if (!File.Exists(caminho))
+            {
+                throw new FileNotFoundException("Arquivo não encontrado.", caminho);
+            }
 
-        //public ClienteRepositorio(IConfiguration configuration)
-        //{
-        //    _jsonFilePath = configuration.GetValue<string>("JsonFilePath");
-        //}
+            // Lê o conteúdo do arquivo JSON
+            var json = File.ReadAllText(caminho);
 
-        //public IEnumerable<Cliente> ObterTodos()
-        //{
-        //    if (!File.Exists(_jsonFilePath))
-        //        throw new FileNotFoundException("Arquivo JSON não encontrado.");
+            var dados = JsonSerializer.Deserialize<ClienteResponse>(json);
 
-        //    var json = File.ReadAllText(_jsonFilePath);
-        //    var data = JsonSerializer.Deserialize<List<Cliente>>(json);
-        //    return data;
-        //}
+            var clientes = _mapper.Map<List<ClienteDto>>(dados.Clientes);
 
-        //public Cliente ObterPorId(int id)
-        //{
-        //    var clientes = ObterTodos();
-        //    return clientes.FirstOrDefault(c => c.ClienteId == id);
-        //}
+            return clientes.FirstOrDefault(c => c.ClienteId == id); // Retorna o cliente encontrado ou null
+        }
 
-        //public void Adicionar(Cliente cliente)
-        //{
-        //    var clientes = ObterTodos().ToList();
-        //    clientes.Add(cliente);
 
-        //    Salvar(clientes);
-        //}
+
+
+
+        public ClienteDto Adicionar(ClienteDto clienteDto)
+        {
+            string caminho = @"C:\Users\gabri\OneDrive\Documentos\Católica\PI-IV-B\clientes.json";
+
+            // Verifica se o arquivo existe
+            if (!File.Exists(caminho))
+            {
+                throw new FileNotFoundException("Arquivo não encontrado.", caminho);
+            }
+
+            // Lê o conteúdo do arquivo JSON
+            var json = File.ReadAllText(caminho);
+
+            // Desserializa os dados existentes para ClienteResponse
+            var dados = JsonSerializer.Deserialize<ClienteResponse>(json);
+
+
+            // Se não existir dados, cria uma nova lista
+            var listaClientes = dados?.Clientes ?? new List<ClienteDto>();
+
+            // Gera um novo ID para o cliente
+            clienteDto.ClienteId = listaClientes.Max(c => c.ClienteId) + 1;
+
+            // Adiciona o cliente à lista
+            listaClientes.Add(clienteDto);
+
+            // Salva de volta no arquivo JSON
+            File.WriteAllText(caminho, JsonSerializer.Serialize(new ClienteResponse { Clientes = listaClientes }));
+
+            // Retorna o cliente com o ID gerado
+            return clienteDto;
+        }
+
+
+
+
+
+
+
+        public ClienteDto Editar(ClienteDto clienteDto)
+        {
+            string caminho = @"C:\Users\gabri\OneDrive\Documentos\Católica\PI-IV-B\clientes.json";
+
+            // Verifica se o arquivo existe
+            if (!File.Exists(caminho))
+            {
+                throw new FileNotFoundException("Arquivo não encontrado.", caminho);
+            }
+
+            // Lê o conteúdo do arquivo JSON
+            var json = File.ReadAllText(caminho);
+
+            // Desserializa os dados existentes para ClienteResponse
+            var dados = JsonSerializer.Deserialize<ClienteResponse>(json);
+
+            // Verifica se a lista de clientes existe
+            var listaClientes = dados?.Clientes ?? new List<ClienteDto>();
+
+            // Encontra o cliente existente
+            var clienteExistente = listaClientes.FirstOrDefault(c => c.ClienteId == clienteDto.ClienteId);
+
+            if (clienteExistente != null)
+            {
+                // Substitui o cliente antigo pelos dados atualizados
+                listaClientes.Remove(clienteExistente);
+                listaClientes.Add(clienteDto);
+            }
+
+            // Salva as alterações de volta no arquivo JSON
+            File.WriteAllText(caminho, JsonSerializer.Serialize(new ClienteResponse { Clientes = listaClientes }));
+
+            return clienteDto;
+        }
+
+
+
+
+
+
+
+        public bool Excluir(int id)
+        {
+            string caminho = @"C:\Users\gabri\OneDrive\Documentos\Católica\PI-IV-B\clientes.json";
+
+            // Verifica se o arquivo existe
+            if (!File.Exists(caminho))
+            {
+                throw new FileNotFoundException("Arquivo não encontrado.", caminho);
+            }
+
+            // Lê o conteúdo do arquivo JSON
+            var json = File.ReadAllText(caminho);
+
+            var dados = JsonSerializer.Deserialize<ClienteResponse>(json);
+
+            // Verifica se a lista de clientes existe
+            var listaClientes = dados?.Clientes ?? new List<ClienteDto>();
+
+            // Busca o cliente que será excluído
+            var clienteParaExcluir = listaClientes.FirstOrDefault(c => c.ClienteId == id);
+
+            if (clienteParaExcluir == null)
+            {
+                return false; // Cliente não encontrado
+            }
+
+            // Remove o cliente da lista
+            listaClientes.Remove(clienteParaExcluir);
+
+            // Salva as alterações de volta no arquivo JSON
+            File.WriteAllText(caminho, JsonSerializer.Serialize(new ClienteResponse { Clientes = listaClientes }));
+
+            return true; // Cliente excluído com sucesso
+        }
+
+
+
+
+
+
 
         //public void Editar(Cliente clienteAtualizado)
         //{

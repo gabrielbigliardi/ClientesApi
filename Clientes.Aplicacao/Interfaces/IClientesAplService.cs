@@ -1,4 +1,5 @@
 ﻿using Clientes.Contrato.Dto;
+using Clientes.Contrato.Entidades;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,15 +14,15 @@ namespace Clientes.Aplicacao.Interfaces
         IEnumerable<ClienteDto> ObterTodos();
 
         //// Método para obter um cliente por ID
-        //ClienteDto ObterPorId(int id);
+        ClienteDto ObterPorId(int id);
 
         //// Método para adicionar um novo cliente
-        //void Adicionar(ClienteDto clienteDto);
+        Cliente Adicionar(Cliente cliente);
 
         //// Método para atualizar um cliente existente
-        //void Atualizar(ClienteDto clienteDto);
+        Cliente Editar(int id, Cliente clienteDto);
 
         //// Método para remover um cliente por ID
-        //void Remover(int id);
+        bool Excluir(int id);
     }
 }

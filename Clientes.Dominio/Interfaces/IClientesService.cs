@@ -11,9 +11,9 @@ namespace Clientes.Dominio.Interfaces
     {
         // Métodos de negócio relacionados à entidade Cliente
         List<Cliente> ObterTodos();
-        //Cliente ObterPorId(int id);
-        //void Adicionar(Cliente cliente);
-        //void Atualizar(Cliente cliente);
-        //void Remover(int id);
+        Cliente ObterPorId(int id);
+        Cliente Adicionar(Cliente cliente);
+        Cliente Editar(int id, Cliente cliente);
+        bool Excluir(int id);
     }
 }

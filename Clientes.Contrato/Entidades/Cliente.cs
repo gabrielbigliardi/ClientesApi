@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Text.Json.Serialization;
@@ -10,12 +11,17 @@ namespace Clientes.Contrato.Entidades
     public class Cliente
     {
         //[JsonPropertyName("cliente_id")]
-        public int ClienteId { get; private set; }
+        public int ClienteId { get; set; }
+        [Required]
         public string Nome { get; private set; }
+        [Required]
         public string Endereco { get; private set; }
+        [Required]
         public string Cep { get; private set; }
         //[JsonPropertyName("data_nascimento")]
+        [Required]
         public DateOnly DataNascimento { get; private set; }
+        [Required]
         public string Telefone { get; private set; }
 
         //public Cliente(int clienteId, string nome, string endereco, string cep, DateOnly dataNascimento, string telefone)

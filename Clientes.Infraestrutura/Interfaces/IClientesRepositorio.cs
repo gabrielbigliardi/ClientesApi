@@ -10,9 +10,9 @@ namespace Clientes.Infraestrutura.Interfaces
     public interface IClientesRepositorio
     {
         List<ClienteDto> ObterTodos();
-        //Cliente ObterPorId(int id);
-        //void Adicionar(Cliente cliente);
-        //void Editar(Cliente clienteAtualizado);
-        //void Excluir(int id);
+        ClienteDto ObterPorId(int id);
+        ClienteDto Adicionar(ClienteDto clienteDto);
+        ClienteDto Editar(ClienteDto clienteAtualizado);
+        bool Excluir(int id);
     }
 }
