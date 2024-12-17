@@ -21,19 +21,11 @@ namespace Clientes.Aplicacao.Servicos
             _clientesService = clientesService;
         }
 
-        public IEnumerable<ClienteDto> ObterTodos()
+        public List<Cliente> ObterTodos()
         {
             var clientes = _clientesService.ObterTodos();
 
-            return clientes.Select(cliente => new ClienteDto
-            {
-                ClienteId = cliente.ClienteId,
-                Nome = cliente.Nome,
-                Endereco = cliente.Endereco,
-                Cep = cliente.Cep,
-                DataNascimento = cliente.DataNascimento,
-                Telefone = cliente.Telefone
-            });
+            return clientes;
         }
 
         public ClienteDto ObterPorId(int id)

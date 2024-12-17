@@ -11,7 +11,7 @@ namespace Clientes.Aplicacao.Interfaces
     public interface IClientesAplService
     {
         // Método para obter todos os clientes
-        IEnumerable<ClienteDto> ObterTodos();
+        List<Cliente> ObterTodos();
 
         //// Método para obter um cliente por ID
         ClienteDto ObterPorId(int id);

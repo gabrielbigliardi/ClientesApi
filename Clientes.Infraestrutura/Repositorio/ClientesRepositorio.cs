@@ -34,11 +34,7 @@ namespace Clientes.Infraestrutura.Repositorio
             // Lê o conteúdo do arquivo JSON
             var json = File.ReadAllText(caminho);
 
-            // Define uma estrutura para deserialização do arquivo JSON
-            //var dados = JsonSerializer.Deserialize<DadosClientes>(json, new JsonSerializerOptions
-            //{
-            //    PropertyNameCaseInsensitive = true
-            //});
+            // Desserializa os dados existentes para ClienteResponse
             var dados = JsonSerializer.Deserialize<ClienteResponse>(json);
 
             // Mapeia a lista de ClienteDto para Cliente
